@@ -34,11 +34,13 @@ const useStyles=makeStyles((theme)=>({
    },
    [theme.breakpoints.down('md')]:{
    root:{
+     width:"95%",
+     margin:"0 auto",
      height:"400px",
    },
    mediaMain:{
     width:"100%",
-    height:"45%"
+    height:"50%"
    },
    subheader:{
     marginLeft:"2px"

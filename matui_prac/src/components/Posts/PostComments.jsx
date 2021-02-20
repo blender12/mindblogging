@@ -34,7 +34,7 @@ const delComment=(id)=>{
      <h4 style={{paddingTop:"30px"}}>{props.user}</h4>
      <p style={{marginBottom:"30px"}}>{props.comment}</p>
      </div>
-     {userinfo?<IconButton onClick={()=>{delComment(props.id)}}><DeleteIcon style={{fontSize:"16px"}}/></IconButton>:null}
+     {userinfo&&userinfo.user.username===props.user?<IconButton onClick={()=>{delComment(props.id)}}><DeleteIcon style={{fontSize:"16px"}}/></IconButton>:null}
     </div>
    </Grid>
    )
