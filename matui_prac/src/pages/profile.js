@@ -24,7 +24,7 @@ window.addEventListener("resize", () => setResponsiveness());
     
 
  },[userinfo]);
-console.log(userinfo);
+
 
 
   return(

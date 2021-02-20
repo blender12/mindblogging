@@ -65,7 +65,6 @@ const googleSuccess=async(res)=>{
   try{
     let data=await res;
   let result=data.profileObj;
-  console.log(result);
   dispatch(SignIn_action(result,history));
   }catch(err){console.log(err)}
 }

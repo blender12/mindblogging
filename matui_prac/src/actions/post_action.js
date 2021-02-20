@@ -5,11 +5,10 @@ import * as allapi from '../allapiCall.js';
 
 export const setPost=(formdata)=>{
          return async function(dispatch){
-               console.log(formdata)
                const data=await api.addPost(formdata);
                console.log(data.data);
                dispatch(addpost(data));
-               window.open("http://localhost:3000/", "_self");
+               window.open("https://mindblogging.herokuapp.com/", "_self");
          }
 
 }
