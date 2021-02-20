@@ -56,7 +56,6 @@ const useStyles=makeStyles((theme)=>({
         cardInfo:{
             width:"100%",
             height:"50%",
-            border:"1px solid green"
         },
         cardContent:{
             textAlign:"justify",fontFamily:"sans-serif",height:"38%",overflow:"hidden",fontSize:"12.5px"
@@ -103,7 +102,7 @@ function ProfileCard(props){
            </CardMedia>
            </div>
            <div className={classes.cardInfo}>
-            <CardHeader title={<Typography  style={mobileView?{fontSize:"14px",fontFamily:"sans-serif",fontWeight:"bold",height:"25px"}:{marginLeft:"12px",fontSize:"22px",fontFamily:"sans-serif",fontWeight:"bold",height:"28px",overflow:"hidden"}}>{props.title}</Typography>} avatar={<Avatar className={classes.avatar} src={props.avatar}/>} subheader={<div style={mobileView?{marginLeft:"2px"}:{marginLeft:"12px"}}><h5>{props.date}</h5><h5>{props.username}</h5></div>}/>
+            <CardHeader title={<Typography  style={mobileView?{fontSize:"14px",fontFamily:"sans-serif",fontWeight:"bold",height:"25px",overflow:"hidden"}:{marginLeft:"12px",fontSize:"22px",fontFamily:"sans-serif",fontWeight:"bold",height:"28px",overflow:"hidden"}}>{props.title}</Typography>} avatar={<Avatar className={classes.avatar} src={props.avatar}/>} subheader={<div style={mobileView?{marginLeft:"2px"}:{marginLeft:"12px"}}><h5>{props.date}</h5><h5>{props.username}</h5></div>}/>
             <CardContent className={classes.cardContent}>{parse(" "+props.content.slice(0,220))}</CardContent>
              <CardActions className={classes.mainActions}>
                 <div>

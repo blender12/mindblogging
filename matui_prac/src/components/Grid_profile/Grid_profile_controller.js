@@ -23,6 +23,14 @@ const useStyles=makeStyles((theme)=>({
         width:"100%",
         padding:"0 16px",
     },
+    [theme.breakpoints.down('md')]:{
+        gridContainer:{
+            margin:"0 auto",
+            marginTop:"72px",
+            width:"95%",
+            padding:"0 16px",
+        },
+    }
 }))
 
 
