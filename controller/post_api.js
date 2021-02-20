@@ -1,7 +1,7 @@
 const db=require('./db.js');
 const fs=require('fs');
 const path=require('path');
-
+const cloudinary = require("cloudinary").v2;
 
 exports.showPosts=async(req,res)=>{
     try{
@@ -31,27 +31,24 @@ exports.profile=async(req,res)=>{
 exports.addPost=async(req,res)=>{
  try{
      let date=new Date().toLocaleString();
-    let addPost=await  db.Post({ title:req.body.title,content:req.body.content,img:req.files.blogImg[0].filename,user_info:[req.body.user_id],
+    let addPost=await  db.Post({ title:req.body.title,content:req.body.content,imgname:req.files.blogImg[0].filename,imgurl:req.files.blogImg[0].path,user_info:[req.body.user_id],
     createdAt:date}).save();
     user=await db.User.updateOne({_id:req.body.user_id},{$push:{mypost:addPost._id}});
-      res.status(200).json(addPost)
+      res.status(200).json(addPost);
        }catch(err){res.status(500).json({message:"server error"})}
     }
 
 exports.editPost=async(req,res)=>{
    try{
      let id=req.query.id
-     let img=req.body.imgdel;
+     let img=req.body.imgname;
+     let imgpath=req.body.imgurl;
 
          req.files.blogImg?img=req.files.blogImg[0].filename:null;
-        let imgPath= path.normalize(`./matui_prac/src/upload/${req.body.imgdel}`);
-        req.files.blogImg?fs.unlink(imgPath,(err)=>{
-            if(err){return console.log(err)}
-            console.log("deleted");
+         req.files.blogImg?imgpath=req.files.blogImg[0].path:null;
+        req.files.blogImg?cloudinary.uploader.destroy(req.body.imgname,()=>{console.log("success")}):null;
 
-        }):null;
-
-    let editpost=await db.Post.updateOne({_id:id},{$set:{title:req.body.title,content:req.body.content,img:img}})
+    let editpost=await db.Post.updateOne({_id:id},{$set:{title:req.body.title,content:req.body.content,imgurl:imgpath,imgname:img}})
      console.log(editpost)
     res.status(200).json({info:id})
    }catch(err){res.status(500).json({message:"server error"})}
@@ -99,12 +96,7 @@ exports.deletePost=async(req,res)=>{
     try{
         let id=req.query.id;
         let imgid=req.query.imgid;
-        let imgPath= path.normalize(`./matui_prac/src/upload/${imgid}`);
-        fs.unlink(imgPath,(err)=>{
-            if(err){return console.log(err)}
-            console.log("deleted");
-
-        })
+         cloudinary.uploader.destroy(imgid,()=>{console.log("deleted")});
         let del= await db.Post.findOneAndDelete({_id:id});
         let commDel=await db.Comment.deleteMany({post_info:id});
        res.status(200).json({info:"post deleted"});

@@ -88,10 +88,12 @@ const [img,setImage]=useState(undefined);
            if(img!==undefined){
             formdata.append("blogImg",img,img.name);
            }
-           formdata.append("imgdel",props.info.img);
+           formdata.append("imgname",props.info.imgname);
+           formdata.append("imgurl",props.info.imgurl)
            try{
              const data=await api.editPost(formdata,props.info._id);
-             window.open("https://mindblogging.herokuapp.com/", "_self");
+             console.log(data);
+             history.go(0);
 
            }catch(err){
                console.log(err);

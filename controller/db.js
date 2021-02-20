@@ -26,7 +26,8 @@ exports.Comment=comment
 const postSchema=new Schema({
     title:String,
     content:String,
-    img:String,
+    imgurl:String,
+    imgname:String,
     user_info:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'user'/*---schemaName---*/

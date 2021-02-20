@@ -58,7 +58,7 @@ function MAINPOST(props){
      <CardHeader  title={<Typography style={mobileView?{fontSize:"14px",color:"black",width:"100%",height:"25px",overflow:"hidden"}:{fontSize:"20px",marginLeft:"8px",height:"28px",width:"98%",overflow:"hidden"}}>{props.title}</Typography>}
      subheader={<div className={classes.subheader}><h5 style={{margin:"5px 2px"}}>{props.date}</h5><h5 style={{margin:"5px 2px",color:"black",fontWeight:"bold"}}>{props.username}</h5></div>} avatar={<Avatar src={props.avatar}/>} action={
      <Badge badgeContent={Array.isArray(props.likes)?props.likes.length:null} color="primary"><MoreVertIcon fontSize={mobileView?"small":"medium"} color={Array.isArray(props.likes)&&props.likes.length?"secondary":"primary"} /></Badge>}/>
-     <CardMedia className={classes.mediaMain} image={require(`../../upload/${props.image}`).default}  title="blog_img" component="figure"/>
+     <CardMedia className={classes.mediaMain} image={props.imgurl}  title="blog_img" component="figure"/>
      <CardActions className={classes.mainActions}><Link to={props.id}><Button variant="contained" color="primary" style={mobileView?{width:"100px",fontSize:"8px"}:{width:"140px",fontSize:"13px"}}>Show More</Button></Link></CardActions>
     </Card>
     </Grid>

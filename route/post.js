@@ -2,13 +2,15 @@ const express=require('express');
 const routes=express.Router();
 const multer = require('multer');
 var upload = multer();
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 var path=require('path');
 const postApi=require('../controller/post_api');
 const userApi=require("../controller/user_api");
 const db=require('../controller/db.js');
 const auth=require('../middleware/auth.js');
 
-var storage=multer.diskStorage({
+/*var storage=multer.diskStorage({
     destination: function (req,file,don){
         don(null,'./matui_prac/src/upload');
     },
@@ -16,7 +18,21 @@ var storage=multer.diskStorage({
         don(null,file.fieldname+Math.random()*2+path.extname(file.originalname));
     }
     
-});
+});*/
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
+    });
+
+  const storage =new CloudinaryStorage({
+        cloudinary: cloudinary,
+        folder: "demo",
+        allowedFormats: ["jpg", "png"],
+        transformation: [{ width: 500, height: 500, crop: "limit" }]
+        });
+
 
  upload = multer({ storage: storage });
 
@@ -27,7 +43,7 @@ routes.get('/posts',postApi.showPosts);
 routes.post('/addpost',auth,upload.fields([{name:'title'},{name:'content'},{name:'blogImg'},{name:"user_id"}]),postApi.addPost);
 
 
-routes.put('/editpost/:data',auth,upload.fields([{name:'title'},{name:'content'},{name:'blogImg'},{name:'imgdel'}]),postApi.editPost);
+routes.put('/editpost/:data',auth,upload.fields([{name:'title'},{name:'content'},{name:'blogImg'},{name:'imgname'},{name:"imgurl"}]),postApi.editPost);
 
 routes.get('/comment/:data',postApi.getcomment);
 routes.post('/addcomment/:data',auth,upload.fields([{name:'comment'},{name:'avatar'},{name:'username'}]),postApi.addComment);

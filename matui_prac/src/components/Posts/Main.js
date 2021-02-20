@@ -113,7 +113,7 @@ function Main(props){
         <Grid item xs={12}>
          <Card className={classes.card}>
          <Typography align="center"  style={mobileView?{marginBottom:"12px",fontSize:"20px",fontFamily:"sans-serif"}:{fontFamily:"sans-serif",marginBottom:"12px",fontSize:"32px"}}>{props.info.title}</Typography>
-         <CardMedia><img src={props.info.img?require(`../../upload/${props.info.img}`).default:null} alt="omg" className={classes.cardMedia}/></CardMedia>
+         <CardMedia><img src={props.info.imgurl} alt="blog image" className={classes.cardMedia}/></CardMedia>
          
          <CardHeader  title={<Typography style={mobileView?{fontSize:"14px"}:{fontSize:"18px"}}>{props.info.user_info?props.info.user_info[0].username:null}</Typography>}
           subheader={<Typography  variant="caption">{props.info.createdAt}</Typography>} avatar={<Avatar src={props.info.user_info?props.info.user_info[0].avatar:null}/>} action={

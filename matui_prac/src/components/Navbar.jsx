@@ -76,7 +76,7 @@ const googleFailure=()=>{
 
 const logout=()=>{
   localStorage.clear("profile");
-  window.open("https://mindblogging.herokuapp.com/", "_self");
+  window.open("http://localhost:3000/", "_self");
 }
 
 useEffect(()=>{

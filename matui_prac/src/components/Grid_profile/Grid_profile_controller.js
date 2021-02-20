@@ -35,7 +35,7 @@ function ProfileGrid(){
         <>
         {profileinfo?<Grid container className={classes.gridContainer}>
         {Array.isArray(profileinfo.mypost)?profileinfo.mypost.map((cValue,index)=>{
-        return <ProfileCard key={index} id={"/post/"+cValue._id} username={cValue.user_info[0].username} avatar={cValue.user_info[0].avatar} content={cValue.content} title={cValue.title} img={cValue.img} date={cValue.createdAt}/>
+        return <ProfileCard key={index} id={"/post/"+cValue._id} username={cValue.user_info[0].username} avatar={cValue.user_info[0].avatar} content={cValue.content} title={cValue.title} imgname={cValue.imgname} imgurl={cValue.imgurl} date={cValue.createdAt}/>
         }): <ClipLoader color="#3d51c4" loading={true} css={override} size={150} />}
         </Grid>: <ClipLoader  color="#3d51c4" loading={true} css={mobileView?mobOverride:override} size={150} />}
         </>

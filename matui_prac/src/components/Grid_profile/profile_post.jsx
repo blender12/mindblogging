@@ -99,7 +99,7 @@ function ProfileCard(props){
           <Card className={classes.cardItem} raised={true}>
            <div className={classes.Mediadiv}>
            <CardMedia className={classes.cardMedia}>
-               <img src={require(`../../upload/${props.img}`).default} alt="img" style={{width:"100%",height:"100%"}} />
+               <img src={props.imgurl} alt="img" style={{width:"100%",height:"100%"}} />
            </CardMedia>
            </div>
            <div className={classes.cardInfo}>
@@ -108,7 +108,7 @@ function ProfileCard(props){
              <CardActions className={classes.mainActions}>
                 <div>
                    <IconButton><Link to={'/editpost/'+props.id.slice(6,)}><EditIcon className={classes.IconButton}></EditIcon></Link></IconButton>
-                   <IconButton onClick={()=>{del(props.id,props.img)}}><DeleteIcon className={classes.IconButton}></DeleteIcon></IconButton>  
+                   <IconButton onClick={()=>{del(props.id,props.imgname)}}><DeleteIcon className={classes.IconButton}></DeleteIcon></IconButton>  
                 </div>
                <Link to={props.id}><Button style={mobileView?{width:"100px",fontSize:"8px"}:{width:"120px",fontSize:"12px"}} color="primary" variant="contained">show more</Button></Link></CardActions>
            </div>

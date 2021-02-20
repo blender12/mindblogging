@@ -46,7 +46,7 @@ function Posts(){
          {Array.isArray(postinfo)?postinfo.map((cValue,index)=>{
              let n;
              mobileView?n=10:n=2;
-             return index<n?<MainPost key={index} image={cValue.img} title={cValue.title} username={cValue.user_info[0].username} date={cValue.createdAt} avatar={cValue.user_info[0].avatar} id={"/post/"+cValue._id} likes={cValue.likes} />:null
+             return index<n?<MainPost key={index} imgurl={cValue.imgurl} title={cValue.title} username={cValue.user_info[0].username} date={cValue.createdAt} avatar={cValue.user_info[0].avatar} id={"/post/"+cValue._id} likes={cValue.likes} />:null
          }):<ClipLoader color="#3d51c4" loading={true} css={mobileView?mobOverride:override} size={150}/>}
         </Grid>
         <Grid container className={classes.subgrid}>
