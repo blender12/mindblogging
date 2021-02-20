@@ -92,8 +92,7 @@ const [img,setImage]=useState(undefined);
            formdata.append("imgurl",props.info.imgurl)
            try{
              const data=await api.editPost(formdata,props.info._id);
-             console.log(data);
-             history.go(0);
+             window.open("https://mindblogging.herokuapp.com/","_self")
 
            }catch(err){
                console.log(err);
