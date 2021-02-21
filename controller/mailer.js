@@ -17,13 +17,15 @@ exports.reg_mail=function(mail_id){
 
    const mailTransporter=nodemailer.createTransport({
       service:"gmail",
-      type:"OAuth2",
-      user:"cricketraid200@gmail.com",
-      clientId:process.env.key1,
-      clientSecret:process.env.key2,
-      refreshToken:process.env.key3,
-      accessToken:accesstoken
-   })
+      auth:{
+        type:"OAuth2",
+        user:"cricketraid200@gmail.com",
+        clientId:process.env.key1,
+        clientSecret:process.env.key2,
+        refreshToken:process.env.key3,
+        accessToken:accesstoken
+      }
+   });
 
    const mailOptions={
        from:"cricketraid200@gmail.com",
